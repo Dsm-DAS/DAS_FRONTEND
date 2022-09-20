@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Slide from "./Slide";
 
 function Slider() {
   return (

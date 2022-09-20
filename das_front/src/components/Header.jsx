@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Logo, Home, User, Club, Wanted, Search, Bell } from "./Logo";
 
 function Header() {
@@ -13,7 +14,7 @@ function Header() {
   return (
     <Container>
       <Wrapper>
-        <Logo color="white"></Logo>
+        <Link to="/"><Logo color="white"></Logo></Link>
         <Click onClick={() => onClick(0)}>
           <Home color={current === 0 ? "#FD3078" : "white"}></Home>
         </Click>
@@ -39,8 +40,8 @@ function Header() {
           </>
         ) : (
           <>
-            <Signup>가입</Signup>
-            <Login>로그인</Login>
+            <Link to="/SignUp"><Signup>가입</Signup></Link>
+            <Link to="/SignIn"><Login>로그인</Login></Link>
           </>
         )}
       </Wrapper>
