@@ -3,8 +3,9 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Slide from "./components/Slide";
 import MainPage from "./pages/MainPage";
-import SignUp from "./components/SignUp";
+import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
+import MyPage from "./pages/MyPage"
 
 function Router() {
   return (
@@ -13,8 +14,9 @@ function Router() {
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/slide" element={<Slide />}></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+        <Route path="/SignUp" element={<SignUpPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/My" element={<MyPage />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

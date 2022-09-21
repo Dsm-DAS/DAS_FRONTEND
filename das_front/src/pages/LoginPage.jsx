@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"
 import styled from "styled-components";
 import { Logo } from "../components/Logo";
 
@@ -8,6 +9,8 @@ const LoginPage = () => {
     pw: "",
   });
 
+  const {id, pw} = inputs
+
   const onChange = (e) => {
     const { value, name } = e.target;
     setInputs({
@@ -16,6 +19,8 @@ const LoginPage = () => {
     });
   };
 
+  const Disabled = !(id && pw);
+
   return (
     <Container>
       <Box>
@@ -23,12 +28,12 @@ const LoginPage = () => {
         <SubTitle>로그인</SubTitle>
 
         <Text>ID</Text>
-        <Input name="id" onChange={onChange} value={inputs.id}></Input>
+        <Input name="id" onChange={onChange} value={id}></Input>
         <Text>비밀번호</Text>
-        <Input name="pw" onChange={onChange} value={inputs.pw}></Input>
+        <Input name="pw" type="password" onChange={onChange} value={pw}></Input>
         <Wrapper>
-          <Button>로그인</Button>
-          <Button>가입</Button>
+          <Button disabled={Disabled}>로그인</Button>
+          <Link to="/SignUp"><Button>가입</Button></Link>
         </Wrapper>
       </Box>
     </Container>
@@ -91,6 +96,8 @@ const Input = styled.input`
   border: 0;
   border: 1px solid rgba(0, 0, 0, 0.45);
   margin-bottom: 13px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 const Button = styled.button`
@@ -104,6 +111,11 @@ const Button = styled.button`
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
+  &:first-child {
+      :disabled {
+    background: #ffccde;
+    }
+  }
   &:last-child {
     background-color: #e6e6e6;
     color: black;
