@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -17,6 +18,23 @@ function Router() {
 			<Footer />
 		</BrowserRouter>
 	);
+=======
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Slide from "./components/Slide";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+
+function Router() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage></MainPage>}></Route>
+        <Route path="/slide" element={<Slide></Slide>}></Route>
+        <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+      </Routes>
+    </BrowserRouter>
+  );
+>>>>>>> Stashed changes
 }
 
 export default Router;

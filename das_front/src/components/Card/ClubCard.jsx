@@ -31,6 +31,7 @@ const Container = styled.div`
   border-radius: 8px;
   background-color: #eeeeee;
   margin-right: 20px;
+  overflow: visible;
 `;
 
 const Circle = styled.div`
@@ -78,11 +79,14 @@ const Line = styled.div`
 const Tags = styled.div`
   overflow: hidden;
   display: flex;
+  width: 300px;
+  height: 50px;
 `;
 
 const Tag = styled.div`
   margin-top: 5px;
   color: black;
+  width: 78px;
   font-size: 16px;
   font-weight: 500;
   margin-right: 10px;

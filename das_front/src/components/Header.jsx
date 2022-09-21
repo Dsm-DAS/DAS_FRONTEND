@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Logo, Home, User, Club, Wanted, Search, Bell } from "./Logo";
@@ -40,8 +41,15 @@ function Header() {
           </>
         ) : (
           <>
+<<<<<<< Updated upstream
             <Link to="/SignUp"><Signup>가입</Signup></Link>
             <Link to="/SignIn"><Login>로그인</Login></Link>
+=======
+            <Signup>가입</Signup>
+            <Link to="/login">
+              <Login>로그인</Login>
+            </Link>
+>>>>>>> Stashed changes
           </>
         )}
       </Wrapper>
