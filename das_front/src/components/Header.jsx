@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { Logo, Home, User, Club, Wanted, Search, Bell } from "./Logo";
 
 function Header() {
@@ -15,7 +14,9 @@ function Header() {
   return (
     <Container>
       <Wrapper>
-        <Link to="/"><Logo color="white"></Logo></Link>
+        <Link to="/">
+          <Logo color="white" width="86" height="22"></Logo>
+        </Link>
         <Click onClick={() => onClick(0)}>
           <Home color={current === 0 ? "#FD3078" : "white"}></Home>
         </Click>
@@ -41,15 +42,12 @@ function Header() {
           </>
         ) : (
           <>
-<<<<<<< Updated upstream
-            <Link to="/SignUp"><Signup>가입</Signup></Link>
-            <Link to="/SignIn"><Login>로그인</Login></Link>
-=======
-            <Signup>가입</Signup>
+            <Link to="/SignUp">
+              <Signup>가입</Signup>
+            </Link>
             <Link to="/login">
               <Login>로그인</Login>
             </Link>
->>>>>>> Stashed changes
           </>
         )}
       </Wrapper>

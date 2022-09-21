@@ -19,14 +19,13 @@ const LoginPage = () => {
   return (
     <Container>
       <Box>
-        <Logo color="black"></Logo>
+        <Logo color="black" width="1000" height="41"></Logo>
         <SubTitle>로그인</SubTitle>
-        <Wrapper>
-          <Text>ID</Text>
-          <Input name="id" onChange={onChange} value={inputs.id}></Input>
-          <Text>비밀번호</Text>
-          <Input name="pw" onChange={onChange} value={inputs.pw}></Input>
-        </Wrapper>
+
+        <Text>ID</Text>
+        <Input name="id" onChange={onChange} value={inputs.id}></Input>
+        <Text>비밀번호</Text>
+        <Input name="pw" onChange={onChange} value={inputs.pw}></Input>
         <Wrapper>
           <Button>로그인</Button>
           <Button>가입</Button>
@@ -51,6 +50,7 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 30px;
   width: 470px;
   height: 400px;
   background-color: white;
@@ -64,6 +64,12 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 20px;
 `;
+
+// const Img = styled.img`
+//   width: 160px;
+//   height: 41px;
+//   margin-top: 50px;
+// `;
 
 const SubTitle = styled.div`
   font-size: 25px;
