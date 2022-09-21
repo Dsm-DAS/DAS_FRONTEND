@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import DASLogo from "../assets/img/Logo.png";
+import { Logo } from "../components/Logo";
 import { useState } from "react";
 
 const SignIn = () => {
@@ -35,7 +35,7 @@ const SignIn = () => {
       <Wrapper>
         <LocaDiv>
           <LogoWrapper>
-            <img src={DASLogo} alt="이미지"></img>
+            <Logo color="black" width="1000" height="41"/>
             <LogoText>가입</LogoText>
           </LogoWrapper>
           <div>

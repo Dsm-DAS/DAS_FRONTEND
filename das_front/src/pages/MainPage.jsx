@@ -1,14 +1,11 @@
 import styled from "styled-components";
 import ClubCard from "../components/Card/ClubCard";
 import UserCard from "../components/Card/UserCard";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import Slider from "../components/Slider";
 
 const MainPage = () => {
   return (
     <>
-      <Header></Header>
       <Slider></Slider>
       <Content>
         <Title>동아리</Title>
@@ -26,7 +23,6 @@ const MainPage = () => {
         <UserCard></UserCard>
         <UserCard></UserCard>
       </Cards>
-      <Footer></Footer>
     </>
   );
 };
