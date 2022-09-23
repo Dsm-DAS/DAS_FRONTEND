@@ -1,14 +1,12 @@
-import styled from 'styled-components';
-import { Logo2 } from './Logo';
+import styled from "styled-components";
+import { Logo2 } from "./Logo";
 
 function Footer() {
-	return (
-		<Wrapper>
-			<Container>
-				<div>asdf</div>
-			</Container>
-		</Wrapper>
-	);
+  return (
+    <Wrapper>
+      <Container></Container>
+    </Wrapper>
+  );
 }
 
 export default Footer;
@@ -18,11 +16,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-`
+`;
 
 const Container = styled.div`
-	position: relative;
-	width: 100vw;
-	height: 100px;
-	background-color: #eeeeee;
+  position: relative;
+  width: 100vw;
+  height: 100px;
+  background-color: #eeeeee;
 `;

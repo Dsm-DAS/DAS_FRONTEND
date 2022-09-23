@@ -35,7 +35,7 @@ const SignIn = () => {
       <Wrapper>
         <LocaDiv>
           <LogoWrapper>
-            <Logo color="black" width="1000" height="41"/>
+            <Logo color="black" width="1000" height="41" />
             <LogoText>가입</LogoText>
           </LogoWrapper>
           <div>
