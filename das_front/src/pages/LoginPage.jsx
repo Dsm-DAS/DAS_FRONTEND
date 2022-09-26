@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Logo } from "../components/Logo";
 
@@ -9,7 +9,7 @@ const LoginPage = () => {
     pw: "",
   });
 
-  const {id, pw} = inputs
+  const { id, pw } = inputs;
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -33,7 +33,9 @@ const LoginPage = () => {
         <Input name="pw" type="password" onChange={onChange} value={pw}></Input>
         <Wrapper>
           <Button disabled={Disabled}>로그인</Button>
-          <Link to="/SignUp"><Button>가입</Button></Link>
+          <Link to="/SignUp">
+            <Button>가입</Button>
+          </Link>
         </Wrapper>
       </Box>
     </Container>
@@ -112,8 +114,8 @@ const Button = styled.button`
   font-weight: 500;
   margin-bottom: 10px;
   &:first-child {
-      :disabled {
-    background: #ffccde;
+    :disabled {
+      background: #ffccde;
     }
   }
   &:last-child {

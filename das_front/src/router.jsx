@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Slide from "./components/Slide";
 import MainPage from "./pages/MainPage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
-import MyPage from "./pages/MyPage"
+import MyPage from "./pages/MyPage";
+import Slide from "./components/Slide";
 
 function Router() {
   return (
