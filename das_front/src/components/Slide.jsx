@@ -6,7 +6,7 @@ const Slide = () => {
   const settings = {
     infinite: true,
     arrows: true,
-    speed: 2000,
+    speed: 300,
     autoplay: true,
     dots: true,
     autoplaySpeed: 7000,
