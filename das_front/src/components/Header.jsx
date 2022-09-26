@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Logo, Home, User, Club, Wanted, Search, Bell } from "./Logo";
+import LogoImg from "../assets/img/Logo.png";
 
 function Header() {
   const [current, setCurrent] = useState(0);
@@ -39,7 +40,7 @@ function Header() {
           <>
             <Bell></Bell>
             <Link to="/My">
-              <Profile></Profile>
+              <Profile src={LogoImg}></Profile>
             </Link>
           </>
         ) : (
@@ -131,7 +132,7 @@ const Signup = styled.div`
   cursor: pointer;
 `;
 
-const Profile = styled.div`
+const Profile = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
