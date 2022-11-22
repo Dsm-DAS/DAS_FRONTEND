@@ -1,18 +1,16 @@
-
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Logo, Home, User, Club, Wanted, Search, Bell } from "./Logo";
-import LogoImg from "../assets/img/Logo.png";
+import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo";
+import LogoImg from "../Assets/img/Logo.png";
 
 function Header() {
   const [current, setCurrent] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
 
-  const onClick = (value) => {
+  const onClick = (value: number) => {
     setCurrent(value);
   };
-
 
   return (
     <Container>
@@ -38,7 +36,7 @@ function Header() {
           <Search></Search>
         </Pos>
         <SearchInput type="text" placeholder="검색"></SearchInput>
-        {isLogin ? (
+        {localStorage.getItem("accessToken") ? (
           <>
             <Bell></Bell>
             <Link to="/My">
@@ -65,13 +63,11 @@ export default Header;
 const Container = styled.div`
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100vw;
   height: 60px;
   background-color: #222222;
-  padding-right: 15%;
-  padding-left: 15%;
   z-index: 99;
 `;
 

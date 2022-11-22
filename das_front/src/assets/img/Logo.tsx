@@ -1,5 +1,12 @@
 //로고 이미지
-export function Logo({ color, width, height }) {
+
+interface IImg {
+  color: string;
+  width?: string;
+  height?: string;
+}
+
+export function Logo({ color, width, height }: IImg) {
   return (
     <svg width={width} height={height} viewBox="0 0 86 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -90,7 +97,7 @@ export function Logo2() {
 }
 
 //홈 이미지
-export function Home({ color }) {
+export function Home({ color }: IImg) {
   return (
     <svg
       width="36"
@@ -113,7 +120,7 @@ export function Home({ color }) {
 }
 
 //사용자 이미지
-export function User({ color }) {
+export function User({ color }: IImg) {
   return (
     <svg
       width="64"
@@ -136,7 +143,7 @@ export function User({ color }) {
 }
 
 //동아리 이미지
-export function Club({ color }) {
+export function Club({ color }: IImg) {
   return (
     <svg
       width="64"
@@ -159,7 +166,7 @@ export function Club({ color }) {
 }
 
 //모집공고 이미지
-export function Wanted({ color }) {
+export function Wanted({ color }: IImg) {
   return (
     <svg
       width="76"

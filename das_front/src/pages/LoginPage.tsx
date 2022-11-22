@@ -1,17 +1,20 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Logo } from "../components/Logo";
+import { Logo } from "../Assets/img/Logo";
+import axios from "axios";
 
 const LoginPage = () => {
   const [inputs, setInputs] = useState({
-    id: "",
-    pw: "",
+    email: "",
+    password: "",
   });
 
-  const { id, pw } = inputs;
+  const navigate = useNavigate();
 
-  const onChange = (e) => {
+  const { email, password } = inputs;
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setInputs({
       ...inputs,
@@ -19,7 +22,18 @@ const LoginPage = () => {
     });
   };
 
-  const Disabled = !(id && pw);
+  const Disabled = !(email && password);
+
+  const login = () => {
+    axios
+      .post(process.env.REACT_APP_BASE_URL + `/user/token`, inputs)
+      .then((res) => {
+        alert("성공");
+        localStorage.setItem("accessToken", res.data.access_token);
+        navigate("/");
+      })
+      .catch((err) => alert("에러"));
+  };
 
   return (
     <Container>
@@ -27,12 +41,14 @@ const LoginPage = () => {
         <Logo color="black" width="1000" height="41"></Logo>
         <SubTitle>로그인</SubTitle>
 
-        <Text>ID</Text>
-        <Input name="id" onChange={onChange} value={id}></Input>
+        <Text>Email</Text>
+        <Input name="email" onChange={onChange} value={email}></Input>
         <Text>비밀번호</Text>
-        <Input name="pw" type="password" onChange={onChange} value={pw}></Input>
+        <Input name="password" type="password" onChange={onChange} value={password}></Input>
         <Wrapper>
-          <Button disabled={Disabled}>로그인</Button>
+          <Button onClick={login} disabled={Disabled}>
+            로그인
+          </Button>
           <Link to="/SignUp">
             <Button>가입</Button>
           </Link>

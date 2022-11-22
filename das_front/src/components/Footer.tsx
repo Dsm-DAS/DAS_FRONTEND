@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Logo2 } from "./Logo";
+import { Logo2 } from "../Assets/img/Logo";
 
 function Footer() {
   return (

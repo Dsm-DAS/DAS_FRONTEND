@@ -6,10 +6,10 @@ const Slide = () => {
   const settings = {
     infinite: true,
     arrows: true,
-    speed: 300,
+    speed: 500,
     autoplay: true,
     dots: true,
-    autoplaySpeed: 7000,
+    autoplaySpeed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
     cssEase: "linear",

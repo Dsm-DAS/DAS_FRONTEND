@@ -1,6 +1,4 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { motion, AnimatePresence, useViewportScroll } from "framer-motion";
 import Slider from "react-slick";
 import Slide from "./Slide";
 
