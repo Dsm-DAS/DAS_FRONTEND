@@ -5,18 +5,22 @@ import MainPage from "./pages/MainPage";
 import SignUpPage from "./pages/SignPage/SignUpPage";
 import LoginPage from "./pages/SignPage/LoginPage";
 import MyPage from "./pages/MyPage";
-import Slide from "./components/Slide";
+import ClubPage from "./pages/ClubPage";
+import Student from "./pages/StudentPage";
+import NoticePage from "./pages/NoticePage";
 
 function Router() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<MainPage />}></Route>
-        <Route path="/slide" element={<Slide />}></Route>
-        <Route path="/SignUp" element={<SignUpPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/My" element={<MyPage />}></Route>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/SignUp" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/my" element={<MyPage />} />
+        <Route path="/club" element={<ClubPage />} />
+        <Route path="/student" element={<Student />} />
+        <Route path="/notice" element={<NoticePage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

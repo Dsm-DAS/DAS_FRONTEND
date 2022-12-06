@@ -1,21 +1,35 @@
 import styled from "styled-components";
 import BackDeco from "../Assets/img/BackDeco.svg";
+import NoticeCard from "../components/PageCard/NoticeCard";
 
-const MyPage = () => {
+const NoticePage = () => {
   return (
     <Container>
       <Wrapper>
         <img style={{ position: "absolute", right: "0" }} src={BackDeco} alt="배경이미지" />
         <Display>
-          <Title>마이페이지</Title>
+          <Title>모집 공고</Title>
           <Title></Title>
         </Display>
+        <Display>
+          <Content>
+            동아리에서 부원을 모집하고 있습니다!
+            <br />
+            동아리에 지원하고 합격하세요!
+          </Content>
+          <div style={{ width: 280 }}></div>
+        </Display>
       </Wrapper>
+      <CardWrapper>
+        <NoticeCard />
+        <NoticeCard />
+        <NoticeCard />
+      </CardWrapper>
     </Container>
   );
 };
 
-export default MyPage;
+export default NoticePage;
 
 const Container = styled.div`
   width: 100vw;
@@ -50,4 +64,12 @@ const Content = styled.div`
   width: 400px;
   color: ${(props) => props.theme.White};
   font-weight: 340;
+`;
+
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 140px;
 `;

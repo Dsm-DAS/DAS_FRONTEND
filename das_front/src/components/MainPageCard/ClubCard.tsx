@@ -1,26 +1,23 @@
+import { Heart } from "../../Assets/img/Logo";
 import styled from "styled-components";
-import { Heart } from "../../assets/img/Logos";
 
-function ClubCard() {
+const ClubCard = () => {
   return (
     <Container>
       <Circle></Circle>
       <Name>동아리 이름</Name>
       <HeartPos>
         <Count>38</Count>
-        <Heart></Heart>
+        <Heart color={"#979797"}></Heart>
       </HeartPos>
       <Line></Line>
       <Tags>
         <Tag>#프론트엔드</Tag>
         <Tag>#프론트엔드</Tag>
-        <Tag>#프론트엔드</Tag>
-        <Tag>#프론트엔드</Tag>
-        <Tag>#프론트엔드</Tag>
       </Tags>
     </Container>
   );
-}
+};
 
 export default ClubCard;
 
@@ -53,7 +50,7 @@ const Name = styled.div`
 `;
 
 const Count = styled.div`
-  color: #fd3078;
+  color: #979797;
   font-size: 16px;
   font-weight: 550;
   margin-right: 3px;
@@ -81,13 +78,13 @@ const Tags = styled.div`
   display: flex;
   width: 300px;
   height: 50px;
+  white-space: pre-wrap;
 `;
 
 const Tag = styled.div`
   margin-top: 5px;
   color: black;
-  width: 78px;
   font-size: 16px;
   font-weight: 500;
-  margin-right: 10px;
+  margin-left: 10px;
 `;

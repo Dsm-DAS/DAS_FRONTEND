@@ -6,7 +6,7 @@ interface IImg {
   height?: string;
 }
 
-export function Logos({ color, width, height }: IImg) {
+export function Logo({ color, width, height }: IImg) {
   return (
     <svg width={width} height={height} viewBox="0 0 86 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -201,12 +201,12 @@ export function Search() {
 }
 
 //하트 이미지
-export function Heart() {
+export function Heart({ color }: IImg) {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M10.6313 5.0889C8.78495 3.6941 6.254 3.63455 4.34414 4.94101C1.51878 6.8737 1.18981 10.9174 3.66562 13.2814L11.5683 20.8272C11.8099 21.0578 12.19 21.0578 12.4316 20.8271L20.3332 13.2817C22.8089 10.9175 22.4797 6.87375 19.6542 4.94114C17.7437 3.63442 15.212 3.69447 13.3657 5.0903L11.9999 6.1228L10.6313 5.0889Z"
-        fill="#FD3078"
+        fill={color}
       />
     </svg>
   );

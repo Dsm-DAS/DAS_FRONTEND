@@ -1,20 +1,18 @@
 import styled from "styled-components";
-import { Heart } from "../../assets/img/Logos";
+import { Heart } from "../../Assets/img/Logo";
 
 const UserCard = () => {
   return (
-    <>
-      <Card>
-        <Circle></Circle>
-        <Wrapper>
-          <Name>정지관</Name>
-          <HeartPos>
-            <Heart></Heart>
-            <Count>38</Count>
-          </HeartPos>
-        </Wrapper>
-      </Card>
-    </>
+    <Card>
+      <Circle></Circle>
+      <Wrapper>
+        <Name>정지관</Name>
+        <HeartPos>
+          <Heart color={"#979797"}></Heart>
+          <Count>38</Count>
+        </HeartPos>
+      </Wrapper>
+    </Card>
   );
 };
 
@@ -46,7 +44,7 @@ const Name = styled.div`
 const Count = styled.div`
   font-size: 16px;
   font-weight: 550;
-  color: #fd3078;
+  color: #979797;
   margin-left: 3px;
   margin-top: 3px;
 `;
