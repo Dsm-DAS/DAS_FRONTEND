@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo";
-import LogoImg from "../Assets/img/Logo.png";
+import { Logos, Home, User, Club, Wanted, Search, Bell } from "../assets/img/Logos";
+import LogoImg from "../assets/img/Logo.png";
 
 function Header() {
   const [current, setCurrent] = useState(0);
@@ -16,7 +16,7 @@ function Header() {
     <Container>
       <Wrapper>
         <Link to="/">
-          <Logo color="white" width="86" height="22"></Logo>
+          <Logos color="white" width="86" height="22"></Logos>
         </Link>
         <Click onClick={() => onClick(0)}>
           <Home color={current === 0 ? "#FD3078" : "white"}></Home>

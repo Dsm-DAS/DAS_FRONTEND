@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Logo } from "../Assets/img/Logo";
+import { Logos } from "../../assets/img/Logos";
 import { useState } from "react";
 import axios from "axios";
 import { SelectableElement } from "react-id-swiper";
@@ -98,7 +98,7 @@ const SignIn = () => {
       <Wrapper>
         <LocaDiv>
           <LogoWrapper>
-            <Logo color="black" width="1000" height="41" />
+            <Logos color="black" width="1000" height="41" />
             <LogoText>가입</LogoText>
           </LogoWrapper>
 

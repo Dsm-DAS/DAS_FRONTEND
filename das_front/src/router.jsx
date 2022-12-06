@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import MainPage from "./pages/MainPage";
-import SignUpPage from "./pages/SignUpPage";
-import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignPage/SignUpPage";
+import LoginPage from "./pages/SignPage/LoginPage";
 import MyPage from "./pages/MyPage";
 import Slide from "./components/Slide";
 

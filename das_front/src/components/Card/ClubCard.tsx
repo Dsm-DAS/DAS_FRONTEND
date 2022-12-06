@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heart } from "../../Assets/img/Logo";
+import { Heart } from "../../assets/img/Logos";
 
 function ClubCard() {
   return (
