@@ -1,4 +1,4 @@
-import React from "react";
+import { ToastContainer } from "react-toastify";
 import Router from "./router";
 import GlobalStyle from "./style/gloablStyle.style";
 import "slick-carousel/slick/slick.css";
@@ -9,6 +9,7 @@ function App() {
     <>
       <GlobalStyle />
       <Router></Router>
+      <ToastContainer />
     </>
   );
 }

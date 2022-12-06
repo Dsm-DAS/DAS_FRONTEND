@@ -6,7 +6,7 @@ interface IImg {
   height?: string;
 }
 
-export function Logo({ color, width, height }: IImg) {
+export function Logos({ color, width, height }: IImg) {
   return (
     <svg width={width} height={height} viewBox="0 0 86 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
