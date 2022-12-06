@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ClubCard from "../components/Card/ClubCard";
-import UserCard from "../components/Card/UserCard";
+import ClubCard from "../components/MainPageCard/ClubCard";
+import UserCard from "../components/MainPageCard/UserCard";
 import Slider from "../components/Slider";
 
 const MainPage = () => {

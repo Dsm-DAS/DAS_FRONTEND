@@ -1,65 +1,109 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Logos, Home, User, Club, Wanted, Search, Bell } from "../assets/img/Logos";
-import LogoImg from "../assets/img/Logo.png";
+import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo";
+import DefaultImage from "../Assets/img/defaultImg.svg";
+import { Link, useLocation } from "react-router-dom";
 
-function Header() {
-  const [current, setCurrent] = useState(0);
-  const [isLogin, setIsLogin] = useState(false);
+type CurrentHeader = "HOME" | "STUDENT" | "CLUB" | "GATHER" | "MYPAGE";
 
-  const onClick = (value: number) => {
-    setCurrent(value);
-  };
+const Header = () => {
+  const router = useLocation();
+  const [current, setCurrent] = useState<CurrentHeader>("HOME");
+
+  useEffect(() => {
+    switch (router.pathname) {
+      case "/":
+        setCurrent("HOME");
+        break;
+      case "/student":
+        setCurrent("STUDENT");
+        break;
+      case "/club":
+        setCurrent("CLUB");
+        break;
+      case "/gather":
+        setCurrent("GATHER");
+        break;
+      case "/mypage":
+        setCurrent("MYPAGE");
+        break;
+      case "/notice":
+        setCurrent("GATHER");
+        break;
+      case "/my":
+        setCurrent("MYPAGE");
+        break;
+      default:
+        setCurrent("HOME");
+        break;
+    }
+  }, [router]);
 
   return (
     <Container>
       <Wrapper>
         <Link to="/">
-          <Logos color="white" width="86" height="22"></Logos>
+          <Click>
+            <Logo color="white" width="86" height="22"></Logo>
+          </Click>
         </Link>
-        <Click onClick={() => onClick(0)}>
-          <Home color={current === 0 ? "#FD3078" : "white"}></Home>
-        </Click>
-        <Click onClick={() => onClick(1)}>
-          <User color={current === 1 ? "#FD3078" : "white"}></User>
-        </Click>
-        <Click onClick={() => onClick(2)}>
-          <Club color={current === 2 ? "#FD3078" : "white"}></Club>
-        </Click>
-        <Click onClick={() => onClick(3)}>
-          <Wanted color={current === 3 ? "#FD3078" : "white"}></Wanted>
-        </Click>
+        <Link to="/">
+          <Click>
+            <Home color={current === "HOME" ? "#FD3078" : "white"}></Home>
+          </Click>
+        </Link>
+        <Link to="/student">
+          <Click>
+            <User color={current === "STUDENT" ? "#FD3078" : "white"}></User>
+          </Click>
+        </Link>
+        <Link to="/club">
+          <Click>
+            <Club color={current === "CLUB" ? "#FD3078" : "white"}></Club>
+          </Click>
+        </Link>
+        <Link to="/notice">
+          <Click>
+            <Wanted color={current === "GATHER" ? "#FD3078" : "white"}></Wanted>
+          </Click>
+        </Link>
       </Wrapper>
       <Wrapper>
         <Pos>
           <Search></Search>
         </Pos>
         <SearchInput type="text" placeholder="검색"></SearchInput>
-        {localStorage.getItem("accessToken") ? (
-          <>
-            <Bell></Bell>
-            <Link to="/My">
-              <Profile src={LogoImg}></Profile>
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link to="/SignUp">
-              <Signup>가입</Signup>
-            </Link>
-            <Link to="/login">
-              <Login>로그인</Login>
-            </Link>
-          </>
-        )}
+        {/* {localStorage.getItem("access_token") ? ( */}
+        <>
+          <Bell />
+          <Link to="/my">
+            <Click>
+              <img
+                src={DefaultImage}
+                width={30}
+                height={30}
+                style={{ backgroundColor: "white", borderRadius: "50px" }}
+                alt=""
+              />
+            </Click>
+          </Link>
+        </>
+        {/* // ) : (
+        //   <>
+        //     <Link to="/SignUp">
+        //       <Signup>가입</Signup>
+        //     </Link>
+        //     <Link to="/login">
+        //       <Login>로그인</Login>
+        //     </Link>
+        //   </>
+        // )} */}
       </Wrapper>
     </Container>
   );
-}
+};
 
 export default Header;
-
 const Container = styled.div`
   position: fixed;
   display: flex;
