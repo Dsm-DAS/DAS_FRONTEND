@@ -37,6 +37,9 @@ const Student = () => {
 export default Student;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
 `;
 
@@ -75,7 +78,6 @@ const CardWrapper = styled.div`
   width: 1200px;
   display: grid;
   margin-top: 20px;
-  margin-left: 150px;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   margin-bottom: 40px;

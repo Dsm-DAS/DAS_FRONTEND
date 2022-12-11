@@ -5,9 +5,10 @@ import MainPage from "./pages/MainPage";
 import SignUpPage from "./pages/SignPage/SignUpPage";
 import LoginPage from "./pages/SignPage/LoginPage";
 import MyPage from "./pages/MyPage";
-import ClubPage from "./pages/ClubPage";
+import ClubPage from "./pages/Club/ClubPage";
 import Student from "./pages/StudentPage";
 import NoticePage from "./pages/NoticePage";
+import ClubDetail from "./pages/Club/ClubDetailPage";
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
         <Route path="/club" element={<ClubPage />} />
         <Route path="/student" element={<Student />} />
         <Route path="/notice" element={<NoticePage />} />
+        <Route path="/club/:id" element={<ClubDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>
