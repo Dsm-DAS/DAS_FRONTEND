@@ -18,8 +18,8 @@ const PageCard = () => {
 export default PageCard;
 
 const Container = styled.div`
-  width: 250px;
-  height: 260px;
+  width: 277px;
+  height: 280px;
   background-color: white;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 3px;
@@ -30,8 +30,8 @@ const Back = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #292929;
-  width: 250px;
-  height: 100px;
+  width: 277px;
+  height: 105px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 3px 3px 0 0;
 `;

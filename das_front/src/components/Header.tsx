@@ -11,6 +11,7 @@ const Header = () => {
   const [current, setCurrent] = useState<CurrentHeader>("HOME");
 
   useEffect(() => {
+    console.log(router);
     switch (router.pathname) {
       case "/":
         setCurrent("HOME");
@@ -34,7 +35,6 @@ const Header = () => {
         setCurrent("MYPAGE");
         break;
       default:
-        setCurrent("HOME");
         break;
     }
   }, [router]);

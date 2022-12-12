@@ -27,7 +27,6 @@ const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: space-around;
-  margin-top: 100px;
   width: 100vw;
   height: 100px;
   background-color: #eeeeee;
