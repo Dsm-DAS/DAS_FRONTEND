@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo";
 import DefaultImage from "../Assets/img/defaultImg.svg";
@@ -73,31 +73,31 @@ const Header = () => {
           <Search></Search>
         </Pos>
         <SearchInput type="text" placeholder="검색"></SearchInput>
-        {/* {localStorage.getItem("access_token") ? ( */}
-        <>
-          <Bell />
-          <Link to="/my">
-            <Click>
-              <img
-                src={DefaultImage}
-                width={30}
-                height={30}
-                style={{ backgroundColor: "white", borderRadius: "50px" }}
-                alt=""
-              />
-            </Click>
-          </Link>
-        </>
-        {/* // ) : (
-        //   <>
-        //     <Link to="/SignUp">
-        //       <Signup>가입</Signup>
-        //     </Link>
-        //     <Link to="/login">
-        //       <Login>로그인</Login>
-        //     </Link>
-        //   </>
-        // )} */}
+        {localStorage.getItem("access_token") ? (
+          <>
+            <Bell />
+            <Link to="/my">
+              <Click>
+                <img
+                  src={DefaultImage}
+                  width={30}
+                  height={30}
+                  style={{ backgroundColor: "white", borderRadius: "50px" }}
+                  alt=""
+                />
+              </Click>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/signUp">
+              <Signup>가입</Signup>
+            </Link>
+            <Link to="/login">
+              <Login>로그인</Login>
+            </Link>
+          </>
+        )}
       </Wrapper>
     </Container>
   );
@@ -172,15 +172,4 @@ const Signup = styled.div`
   margin-right: 10px;
   margin-left: 10px;
   cursor: pointer;
-`;
-
-const Profile = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: white;
-  border: 2px solid #323132;
-  &:hover {
-    border: 2px solid #fd3078;
-  }
 `;
