@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ClubCard from "../components/PageCard/PageCard";
-import BackDeoco from "../Assets/img/BackDeco.svg";
+import ClubCard from "../../components/PageCard/PageCard";
+import BackDeoco from "../../Assets/img/BackDeco.svg";
 
 const ClubPage = () => {
   const club_type = ["전공동아리", "창체동아리", "자율동아리"];
@@ -44,7 +44,11 @@ const ClubPage = () => {
 export default ClubPage;
 
 const Container = styled.div`
+  position: relative;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Wrapper = styled.div`
@@ -90,7 +94,8 @@ const ClubType = styled.div`
 `;
 
 const Select = styled.select`
-  margin-left: 13%;
+  position: absolute;
+  left: 0;
   margin-top: 15px;
 `;
 
@@ -98,7 +103,6 @@ const CardWrapper = styled.div`
   width: 1200px;
   display: grid;
   margin-top: 20px;
-  margin-left: 150px;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   margin-bottom: 40px;

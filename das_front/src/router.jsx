@@ -6,10 +6,11 @@ import SignUpEmail from "./pages/SignPage/SignUp/SignUpEmail";
 import LoginPage from "./pages/SignPage/SignIn/LoginPage";
 import SetPwPage from "./pages/SignPage/SignUp/SetPw";
 import MyPage from "./pages/MyPage";
-import ClubPage from "./pages/ClubPage";
+import ClubPage from "./pages/Club/ClubPage";
 import Student from "./pages/StudentPage";
 import NoticePage from "./pages/NoticePage";
 import SetPrivacy from "./pages/SignPage/SignUp/SetPrivacy"
+import ClubDetail from "./pages/Club/ClubDetailPage";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
         <Route path="/club" element={<ClubPage />} />
         <Route path="/student" element={<Student />} />
         <Route path="/notice" element={<NoticePage />} />
+        <Route path="/club/:id" element={<ClubDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>
