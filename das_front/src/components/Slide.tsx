@@ -11,13 +11,14 @@ const Slide = () => {
     dots: true,
     autoplaySpeed: 4000,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    draggable: true,
     cssEase: "linear",
     centerMode: true,
     variableWidth: true,
+    swipeToSlide: true,
   };
   return (
-    <>
+    <div>
       <Slider {...settings}>
         <div>
           <Card></Card>
@@ -52,7 +53,7 @@ const Slide = () => {
           <Title>동아리 이름</Title>
         </div>
       </Slider>
-    </>
+    </div>
   );
 };
 

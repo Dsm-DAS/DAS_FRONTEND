@@ -28,14 +28,14 @@ const ClubPage = () => {
         <option>조회수순</option>
       </Select>
       <CardWrapper>
+        {/* <ClubCard></ClubCard>
         <ClubCard></ClubCard>
         <ClubCard></ClubCard>
         <ClubCard></ClubCard>
         <ClubCard></ClubCard>
         <ClubCard></ClubCard>
         <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
+        <ClubCard></ClubCard> */}
       </CardWrapper>
     </Container>
   );
@@ -90,6 +90,11 @@ const ClubType = styled.div`
   font-size: 30px;
   color: ${(props) => props.theme.White};
   font-weight: 500;
+  &:hover {
+    color: ${(props) => props.theme.Main};
+    text-decoration: underline;
+  }
+  z-index: 99;
   cursor: pointer;
 `;
 
@@ -101,6 +106,7 @@ const Select = styled.select`
 
 const CardWrapper = styled.div`
   width: 1200px;
+  height: 50vh;
   display: grid;
   margin-top: 20px;
   grid-template-columns: repeat(4, 1fr);

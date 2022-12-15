@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../../Utils/api/Sign/Login"
-import * as _ from "../Sign.Style"
+import api from "../../../Utils/api/Sign/Login";
+import * as _ from "../Sign.Style";
 
 const LoginPage = () => {
   const [inputs, setInputs] = useState({
@@ -19,14 +19,14 @@ const LoginPage = () => {
     });
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const EmailBorder = (email.indexOf("@dsm.hs.kr") === -1);
-  const PwBorder = !(password)
+  const EmailBorder = email.indexOf("@dsm.hs.kr") === -1;
+  const PwBorder = !password;
   const Disabled = !(email && password);
 
   const LoginAPI = () => {
-    api.Login(inputs, navigate)
+    api.Login(inputs, navigate);
   };
 
   return (
@@ -40,7 +40,8 @@ const LoginPage = () => {
             onChange={onChange}
             borderColor={EmailBorder ? "red" : "green"}
             inputs={EmailBorder}
-            value={email}></_.Input>
+            value={email}
+          ></_.Input>
         </_.InputWrapper>
         <_.InputWrapper>
           <_.Text>비밀번호</_.Text>
@@ -50,8 +51,13 @@ const LoginPage = () => {
             borderColor={PwBorder ? "red" : "green"}
             inputs={PwBorder}
             onChange={onChange}
-            onKeyPress={(e) => { if (e.key == "Enter") { LoginAPI() } }}
-            value={password}></_.Input>
+            onKeyPress={(e) => {
+              if (e.key == "Enter") {
+                LoginAPI();
+              }
+            }}
+            value={password}
+          ></_.Input>
         </_.InputWrapper>
         <_.Wrapper>
           <_.BigButton onClick={LoginAPI} disabled={Disabled}>

@@ -8,9 +8,11 @@ import SetPwPage from "./pages/SignPage/SignUp/SetPw";
 import MyPage from "./pages/MyPage";
 import ClubPage from "./pages/Club/ClubPage";
 import Student from "./pages/StudentPage";
-import NoticePage from "./pages/NoticePage";
-import SetPrivacy from "./pages/SignPage/SignUp/SetPrivacy"
+import SetPrivacy from "./pages/SignPage/SignUp/SetPrivacy";
+import GatherPage from "./pages/Gather/GatherPage";
 import ClubDetail from "./pages/Club/ClubDetailPage";
+import GatherDetail from "./pages/Gather/GahterDetail";
+import GatherCreate from "./pages/Gather/GatherCreate";
 
 function Router() {
   return (
@@ -25,8 +27,11 @@ function Router() {
         <Route path="/my" element={<MyPage />} />
         <Route path="/club" element={<ClubPage />} />
         <Route path="/student" element={<Student />} />
-        <Route path="/notice" element={<NoticePage />} />
+        <Route path="/gather" element={<GatherPage />} />
         <Route path="/club/:id" element={<ClubDetail />} />
+        <Route path="/gather/:id" element={<GatherDetail />} />
+        <Route path="/gather/create" element={<GatherCreate />} />
+        <Route path="/notice" element={<></>} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,36 +1,49 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ExampleImg from "../../Assets/img/ExampleImg.png";
+import { AllFeed } from "../../interfaces/Feed";
 
-const NoticeCard = () => {
+const GatherCard = ({ created_at, feed_id, title, views, writer }: AllFeed) => {
+  const { name, profile_image_url, user_id } = writer;
+  const [feedImg, setFeedImg] = useState(ExampleImg);
+  // useEffect(() => {
+  //   if (profile_image_url === "a") {
+  //     setFeedImg(profile_image_url);
+  //   }
+  // }, []);
+
   return (
-    <Container>
-      <img src={ExampleImg} width={220} height={200} alt="모집글 이미지" />
-      <TextBox>
-        <div>
-          <Title>모집글 제목</Title>
-          <ClubName>동아리 이름</ClubName>
-          <FieldSupport>지원분야</FieldSupport>
-          <Fields>
-            <Field>프론트엔드</Field>
-            <Field>백엔드</Field>
-            <Field>안드로이드</Field>
-            <Field>iOS</Field>
-            <Field>디자인</Field>
-          </Fields>
-        </div>
-        <div>
-          <Detail>자세히보기</Detail>
-          <div style={{ display: "flex", alignItems: "center", marginTop: 75 }}>
-            <EndDate>마감일</EndDate>
-            <Date>D-23</Date>
+    <Link to={`/gather/${feed_id}`}>
+      <Container>
+        <img src={feedImg} width={220} height={200} alt="모집글 이미지" />
+        <TextBox>
+          <div>
+            <Title>{title}</Title>
+            <ClubName>{name}</ClubName>
+            <FieldSupport>지원분야</FieldSupport>
+            <Fields>
+              <Field>프론트엔드</Field>
+              <Field>백엔드</Field>
+              <Field>안드로이드</Field>
+              <Field>iOS</Field>
+              <Field>디자인</Field>
+            </Fields>
           </div>
-        </div>
-      </TextBox>
-    </Container>
+          <div>
+            <Detail>자세히보기</Detail>
+            <div style={{ display: "flex", alignItems: "center", marginTop: 75 }}>
+              <EndDate>마감일</EndDate>
+              <Date>D-23</Date>
+            </div>
+          </div>
+        </TextBox>
+      </Container>
+    </Link>
   );
 };
 
-export default NoticeCard;
+export default GatherCard;
 
 const Container = styled.div`
   display: flex;

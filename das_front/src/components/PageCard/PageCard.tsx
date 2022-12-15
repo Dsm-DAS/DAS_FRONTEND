@@ -1,17 +1,23 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Heart } from "../../Assets/img/Logo";
+import { AllUser } from "../../interfaces/User";
 
-const PageCard = () => {
+const PageCard = ({ name, profile_image_url, user_id, view_counts }: AllUser) => {
   return (
-    <Container>
-      <Back></Back>
-      <ClubName>DMS</ClubName>
-      <Explain>간단한 동아리 소개</Explain>
-      <Wrapper>
-        <Heart color={"#979797"} />
-        <Number>38</Number>
-      </Wrapper>
-    </Container>
+    <Link to={`/user/${user_id}`}>
+      <Container>
+        <Back>
+          <img src={profile_image_url} width={277} height={277} alt="프로필 이미지" />
+        </Back>
+        <ClubName>{name}</ClubName>
+        <Explain>간단한 동아리 소개</Explain>
+        <Wrapper>
+          <Heart color={"#979797"} />
+          <Number>{view_counts}</Number>
+        </Wrapper>
+      </Container>
+    </Link>
   );
 };
 
@@ -34,6 +40,7 @@ const Back = styled.div`
   height: 105px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 3px 3px 0 0;
+  overflow: hidden;
 `;
 
 const ClubName = styled.div`

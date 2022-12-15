@@ -4,14 +4,13 @@ import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo
 import DefaultImage from "../Assets/img/defaultImg.svg";
 import { Link, useLocation } from "react-router-dom";
 
-type CurrentHeader = "HOME" | "STUDENT" | "CLUB" | "GATHER" | "MYPAGE";
+type CurrentHeader = "HOME" | "STUDENT" | "CLUB" | "GATHER" | "MYPAGE" | "NOTICE";
 
 const Header = () => {
   const router = useLocation();
   const [current, setCurrent] = useState<CurrentHeader>("HOME");
 
   useEffect(() => {
-    console.log(router);
     switch (router.pathname) {
       case "/":
         setCurrent("HOME");
@@ -29,7 +28,7 @@ const Header = () => {
         setCurrent("MYPAGE");
         break;
       case "/notice":
-        setCurrent("GATHER");
+        setCurrent("NOTICE");
         break;
       case "/my":
         setCurrent("MYPAGE");
@@ -62,7 +61,7 @@ const Header = () => {
             <Club color={current === "CLUB" ? "#FD3078" : "white"}></Club>
           </Click>
         </Link>
-        <Link to="/notice">
+        <Link to="/gather">
           <Click>
             <Wanted color={current === "GATHER" ? "#FD3078" : "white"}></Wanted>
           </Click>

@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import { Heart } from "../../Assets/img/Logo";
+import { AllUser } from "../../interfaces/User";
 
-const UserCard = () => {
+const UserCard = ({ name, profile_image_url, user_id, view_counts }: AllUser) => {
   return (
     <Card>
-      <Circle></Circle>
+      <Circle>
+        <img src={profile_image_url} style={{ borderRadius: 50 }} width={70} height={70} alt="" />
+      </Circle>
       <Wrapper>
-        <Name>정지관</Name>
+        <Name>{name}</Name>
         <HeartPos>
           <Heart color={"#979797"}></Heart>
-          <Count>38</Count>
+          <Count>{view_counts}</Count>
         </HeartPos>
       </Wrapper>
     </Card>
@@ -30,10 +33,14 @@ const Wrapper = styled.div`
 `;
 
 const Circle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 70px;
   height: 70px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 `;
 
 const Name = styled.div`

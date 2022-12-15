@@ -1,8 +1,15 @@
+import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import BackDeco from "../Assets/img/BackDeco.svg";
 import PageCard from "../components/PageCard/PageCard";
+import { AllUser } from "../interfaces/User";
+import user from "../Utils/api/Sign/User";
 
 const Student = () => {
+  const { data } = useQuery(["allUser"], user.getAllUser);
+
+  console.log(data?.data.user_list);
+
   return (
     <Container>
       <Wrapper>
@@ -17,18 +24,19 @@ const Student = () => {
         </Display>
       </Wrapper>
       <CardWrapper>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
-        <PageCard></PageCard>
+        {data?.data.user_list.map((res: AllUser) => {
+          const { class_num, grade, name, profile_image_url, user_id, view_counts } = res;
+          return (
+            <PageCard
+              class_num={class_num}
+              grade={grade}
+              name={name}
+              profile_image_url={profile_image_url}
+              user_id={user_id}
+              view_counts={view_counts}
+            />
+          );
+        })}
       </CardWrapper>
     </Container>
   );
@@ -81,4 +89,5 @@ const CardWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   margin-bottom: 40px;
+  min-height: 50vh;
 `;
