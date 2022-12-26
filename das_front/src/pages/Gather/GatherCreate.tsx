@@ -1,21 +1,45 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackDeoco from "../../Assets/img/BackDeco.svg";
 import useInput from "../../Hooks/useInput";
+import { IMajor } from "../../interfaces/Enums";
+import Feed from "../../Utils/api/Sign/Feed";
+
+interface IGahterCreate {
+  Y: number;
+  M: number;
+  D: number;
+  Major: IMajor;
+}
 
 const GatherCreate = () => {
-  const [date, setDate] = useState({
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [date, setDate] = useState<IGahterCreate>({
     Y: 2022,
     M: 1,
     D: 1,
+    Major: null,
   });
-  const { Y, M, D } = date;
-
+  const { Y, M, D, Major } = date;
   const [title, onChangeTitle, setTitle] = useInput();
   const [content, onChangeContent, setContent] = useInput();
-  const [url, onChangeUrl, seturl] = useInput();
+  const [url, onChangeUrl, setUrl] = useInput();
 
-  const Fields = ["분야선택", "프론트엔드", "백엔드", "안드로이드", "IOS"];
+  useEffect(() => {
+    if (location.state.type === "edit") {
+      Feed.getFeedDetail(location.state.data).then((res) => {
+        const { content, title, das_url } = res.data;
+        setUrl(das_url);
+        setContent(content);
+        setTitle(title);
+      });
+    }
+    if (location.state.type === "write") return;
+  }, []);
+
+  const Fields = ["분야선택", "FRONTEND", "BACKEND", "ANDROID", "IOS"];
   const Year = Array(10)
     .fill(1)
     .map((v, i) => i + 2022);
@@ -26,11 +50,20 @@ const GatherCreate = () => {
     .fill(1)
     .map((v, i) => i + 1);
 
-  useEffect(() => {}, [date]);
-
   const onChangeDate = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value, name } = e.target;
     setDate({ ...date, [name]: value });
+  };
+
+  const WriteFeed = () => {
+    Feed.postFeed(
+      title,
+      content,
+      url,
+      Major,
+      `${Y}-${String(M).padStart(2, "0")}-${String(D).padStart(2, "0")}`,
+      navigate
+    );
   };
 
   return (
@@ -55,15 +88,16 @@ const GatherCreate = () => {
         <SFont>제목 :</SFont>
         <TitleInput onChange={onChangeTitle} value={title} />
         <SFont>모집 내용 :</SFont>
-        <TextArea onChange={onChangeContent} value={content} placeholder="자세한 모집 내용"></TextArea>
+        <TextArea maxLength={1000} onChange={onChangeContent} value={content} placeholder="자세한 모집 내용"></TextArea>
+        <Length>{content.length}/1000</Length>
         <SFont>URL :</SFont>
         <URLInput onChange={onChangeUrl} value={url} placeholder="URL입력" />
         <SFont>
           지원 분야 : <SFont style={{ color: "#000000", marginLeft: 15 }}>프론트엔드 백엔드 안드로이드 iOS</SFont>
         </SFont>
-        <Select>
-          {Fields.map((res) => {
-            return <option>{res}</option>;
+        <Select name="Major" onChange={onChangeDate}>
+          {Fields.map((res, i) => {
+            return <option key={i}>{res}</option>;
           })}
         </Select>
         <SFont>
@@ -74,24 +108,30 @@ const GatherCreate = () => {
         </SFont>
         <div style={{ display: "flex", gap: "10px" }}>
           <Select name="Y" onChange={onChangeDate}>
-            {Year.map((res) => {
-              return <option>{res}</option>;
+            {Year.map((res, i) => {
+              return <option key={i}>{res}</option>;
             })}
           </Select>
           <Select name="M" onChange={onChangeDate}>
-            {Month.map((res) => {
-              return <option>{res}</option>;
+            {Month.map((res, i) => {
+              return <option key={i}>{res}</option>;
             })}
           </Select>
           <Select name="D" onChange={onChangeDate}>
-            {Day.map((res) => {
-              return <option>{res}</option>;
+            {Day.map((res, i) => {
+              return <option key={i}>{res}</option>;
             })}
           </Select>
         </div>
         <div style={{ margin: "100px 0px", display: "flex", gap: 20, justifyContent: "flex-end" }}>
-          <WriteButton>삭제하기</WriteButton>
-          <WriteButton>저장하기</WriteButton>
+          {location.state.type === "edit" ? (
+            <>
+              <WriteButton>삭제하기</WriteButton>
+              <WriteButton>저장하기</WriteButton>
+            </>
+          ) : (
+            <WriteButton onClick={WriteFeed}>작성하기</WriteButton>
+          )}
         </div>
       </div>
     </Container>
@@ -166,6 +206,7 @@ const TitleInput = styled.input`
 `;
 
 const TextArea = styled.textarea`
+  position: relative;
   width: 73vw;
   height: 400px;
   background-color: #fdfdfd;
@@ -174,7 +215,14 @@ const TextArea = styled.textarea`
   border: 1px solid #cccccc;
   resize: none;
   padding: 10px;
+`;
+
+const Length = styled.div`
+  margin-left: 69.5vw;
+  font-size: 16px;
+  color: black;
   margin-bottom: 40px;
+  z-index: 99;
 `;
 
 const URLInput = styled.input`

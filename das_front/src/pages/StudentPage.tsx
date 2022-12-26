@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BackDeco from "../Assets/img/BackDeco.svg";
 import PageCard from "../components/PageCard/PageCard";
@@ -7,8 +8,6 @@ import user from "../Utils/api/Sign/User";
 
 const Student = () => {
   const { data } = useQuery(["allUser"], user.getAllUser);
-
-  console.log(data?.data.user_list);
 
   return (
     <Container>
@@ -25,16 +24,20 @@ const Student = () => {
       </Wrapper>
       <CardWrapper>
         {data?.data.user_list.map((res: AllUser) => {
-          const { class_num, grade, name, profile_image_url, user_id, view_counts } = res;
+          const { class_num, grade, name, profile_image_url, user_id, view_counts, introduce } = res;
           return (
-            <PageCard
-              class_num={class_num}
-              grade={grade}
-              name={name}
-              profile_image_url={profile_image_url}
-              user_id={user_id}
-              view_counts={view_counts}
-            />
+            <Link to={`/user/${user_id}`}>
+              <PageCard
+                key={user_id}
+                class_num={class_num}
+                grade={grade}
+                name={name}
+                profile_image_url={profile_image_url}
+                user_id={user_id}
+                introduce={introduce}
+                view_counts={view_counts}
+              />
+            </Link>
           );
         })}
       </CardWrapper>

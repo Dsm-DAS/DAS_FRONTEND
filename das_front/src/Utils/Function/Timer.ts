@@ -7,9 +7,9 @@ export const CreatedDate = (created_at: string) => {
   return moment(`${Make} ${Make2}`, "YYYY-MM-DD HH:mm:ss").fromNow();
 };
 
-export const Deadline = (end_at: string = "2022-12-18 08:11:17") => {
+export const Deadline = (end_at: string = "2022-12-18") => {
   const date1 = moment();
-  const date2 = moment(end_at.slice(0, 10));
+  const date2 = moment(end_at);
   date1.format();
   date2.format();
 

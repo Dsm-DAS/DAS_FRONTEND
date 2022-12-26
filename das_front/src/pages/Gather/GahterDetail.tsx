@@ -7,14 +7,18 @@ import CommentInput from "../../components/Comment/CommentInput";
 import Comments from "../../components/Comment/Comments";
 import { useQuery } from "@tanstack/react-query";
 import feed from "../../Utils/api/Sign/Feed";
-import { useLocation } from "react-router-dom";
-import { FeedDetail } from "../../interfaces/Feed";
-import { Deadline } from "../../Utils/Function/Timer";
+import { Link, useLocation } from "react-router-dom";
+import useAutosizeTextArea from "../../Utils/Function/TextAreaAutoHeight";
+import { useRef } from "react";
+import EditImg from "../../Assets/img/Edit.svg";
 
 const GatherDetail = () => {
   const location = useLocation();
-  const [, , url] = location.pathname.split("/");
-  const { data } = useQuery(["feed", url], () => feed.getFeedDetail(parseInt(url)));
+  let feed_id = location.state.data;
+  const { data } = useQuery(["feed", feed_id], () => feed.getFeedDetail(parseInt(feed_id)));
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useAutosizeTextArea(textAreaRef.current, data?.data.content);
 
   return (
     <Container>
@@ -33,7 +37,7 @@ const GatherDetail = () => {
           <div style={{ width: 280 }}></div>
         </Display>
       </Wrapper>
-      <div style={{ width: "73vw", marginTop: 40 }}>
+      <div style={{ width: "73vw", marginTop: 40, position: "relative" }}>
         <div style={{ display: "flex" }}>
           <Img src={ExampleImg} alt="" />
           <TitleWrapper>
@@ -53,12 +57,19 @@ const GatherDetail = () => {
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <MajorFont>마감일 :</MajorFont>
-              <MajorFont style={{ marginLeft: 5, color: "#000000" }}>D - {Deadline(data?.data.end_at)}</MajorFont>
+              <MajorFont style={{ marginLeft: 5, color: "#000000" }}>{data?.data.end_at}</MajorFont>
             </div>
           </TitleWrapper>
+          {data?.data.mine && (
+            <Link to="/gather/create" state={{ data: location.state.data, type: "edit" }}>
+              <Edit>
+                <img src={EditImg} alt="" />
+              </Edit>
+            </Link>
+          )}
         </div>
         <SFont>모집 내용 :</SFont>
-        <TextArea>{data?.data.content}</TextArea>
+        <TextArea readOnly ref={textAreaRef} value={data?.data.content}></TextArea>
         <SFont>URL :</SFont>
         <URL href={data?.data.das_url} target="_blank">
           {data?.data.das_url}
@@ -68,8 +79,8 @@ const GatherDetail = () => {
           <img src={MessageText} alt="" />
           <SFont style={{ color: "#000000", marginLeft: 6 }}>댓글</SFont>
         </div>
-        <CommentInput />
-        <Comments></Comments>
+        <CommentInput feed_id={feed_id} />
+        <Comments comment_list={data?.data.comment_list}></Comments>
       </div>
     </Container>
   );
@@ -155,7 +166,7 @@ const URL = styled.a`
   font-size: 16px;
 `;
 
-const TextArea = styled.div`
+const TextArea = styled.textarea`
   font-weight: 400;
   margin-bottom: 200;
   border: 0;
@@ -171,4 +182,19 @@ const TextArea = styled.div`
 const Line = styled.div`
   border: 1px solid #cccccc;
   margin: 20px 0px;
+`;
+
+const Edit = styled.div`
+  position: absolute;
+  top: 52px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #fd3078;
+  border-radius: 5px;
+  cursor: pointer;
 `;

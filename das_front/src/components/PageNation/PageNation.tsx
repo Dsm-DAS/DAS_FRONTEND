@@ -1,29 +1,41 @@
 import styled from "styled-components";
+import { AllFeed } from "../../interfaces/Feed";
 
-const PageNation = () => {
-  //   const Left = () => {
-  //     if (page !== 0) {
-  //       setPage((prev) => prev - 1);
-  //     }
-  //   };
+interface IPage {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  data: AllFeed[];
+  maxNumber: number;
+}
 
-  //   const Right = () => {
-  //     if (page !== Math.ceil(data?.length / 3) - 1) {
-  //       setPage((prev) => prev + 1);
-  //     }
-  //   };
+const PageNation = ({ page, setPage, data, maxNumber }: IPage) => {
+  const Left = () => {
+    if (page !== 0) {
+      setPage((prev) => prev - 1);
+    }
+  };
+
+  const Right = () => {
+    if (page !== Math.ceil(data?.length / 3) - 1) {
+      setPage((prev) => prev + 1);
+    }
+  };
 
   return (
     <Pages>
       <Arrows>
         <Arrow>&lt;</Arrow>
-        <Text>이전</Text>
+        <Text onClick={Left}>이전</Text>
       </Arrows>
-      <Number>0</Number>
-      <Number>1</Number>
-      <Number>2</Number>
+      {data?.slice(0, Math.ceil(data?.length / maxNumber)).map((res, i) => {
+        return (
+          <Number key={i} onClick={() => setPage(i)} select={page === i}>
+            {i + 1}
+          </Number>
+        );
+      })}
       <Arrows>
-        <Text>다음</Text>
+        <Text onClick={Right}>다음</Text>
         <Arrow>&gt;</Arrow>
       </Arrows>
     </Pages>
@@ -67,7 +79,7 @@ export const Arrow = styled.div`
   margin: 0 10px;
 `;
 
-export const Number = styled.div`
+export const Number = styled.div<{ select: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,8 +88,8 @@ export const Number = styled.div`
   font-size: 18px;
   font-weight: 500;
   border-radius: 2px;
-  background-color: #fd3078;
-  color: black;
+  background-color: ${(props) => (props.select ? "#fd3078" : "#ffffff")};
+  color: ${(props) => (props.select ? "#ffffff" : "#000000")};
   &:hover {
     background-color: #fd3078;
     color: white;

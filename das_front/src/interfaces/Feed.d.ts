@@ -1,9 +1,13 @@
+import { IMajor } from "./Enums";
+
 export interface AllFeed {
-  created_at: string;
-  feed_id: number;
-  title: string;
-  views: number;
+  created_at?: string;
+  feed_id?: number;
+  title?: string;
+  views?: number;
   writer: FeedWriter;
+  major?: IMajor;
+  end_at?: string;
 }
 
 export interface FeedWriter {

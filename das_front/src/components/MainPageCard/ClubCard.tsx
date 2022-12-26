@@ -1,19 +1,28 @@
 import { Heart } from "../../Assets/img/Logo";
 import styled from "styled-components";
-
-const ClubCard = () => {
+import { AllClub } from "../../interfaces/Club";
+import { Link } from "react-router-dom";
+const ClubCard = ({
+  club_id,
+  club_name,
+  club_image_url,
+  club_introduce,
+  club_type,
+  club_category,
+  like_counts,
+}: AllClub) => {
   return (
     <Container>
       <Circle></Circle>
-      <Name>동아리 이름</Name>
+      <Name>{club_name}</Name>
       <HeartPos>
-        <Count>38</Count>
+        <Count>{like_counts}</Count>
         <Heart color={"#979797"}></Heart>
       </HeartPos>
       <Line></Line>
       <Tags>
-        <Tag>#프론트엔드</Tag>
-        <Tag>#프론트엔드</Tag>
+        <Tag>#{club_type}</Tag>
+        <Tag>#{club_category}</Tag>
       </Tags>
     </Container>
   );
@@ -29,6 +38,7 @@ const Container = styled.div`
   background-color: #eeeeee;
   margin-right: 20px;
   overflow: visible;
+  cursor: pointer;
 `;
 
 const Circle = styled.div`

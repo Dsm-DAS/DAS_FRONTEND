@@ -1,24 +1,24 @@
 import request from "../../axios/axios";
 
 export default {
-  getClubAll() {
-    //전체동아리 가져오기
+  getAllNotice() {
+    //전제공지 가져오기
     return request({
-      url: `/club/lists`,
+      url: `/notice`,
       method: "get",
       headers: {
         Authorization: `Bearer ${localStorage.access_token}`,
       },
     }).catch((res) => {});
   },
-  getClubDetail(id: number) {
-    //동아리 상세정보 확인
+  getNoticeDetail(id: number) {
+    //공지상세보기
     return request({
-      url: `/club/${id}`,
+      url: `/notice/${id}`,
       method: "get",
       headers: {
         Authorization: `Bearer ${localStorage.access_token}`,
       },
-    });
+    }).catch((res) => {});
   },
 };

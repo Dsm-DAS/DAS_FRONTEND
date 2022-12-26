@@ -11,6 +11,7 @@ import feed from "../../Utils/api/Sign/Feed";
 type FeedFilter = "ViewOrder" | "LatestOrder";
 
 const GatherPage = () => {
+  const [page, setPage] = useState(0);
   const [select, setSelect] = useState<FeedFilter>("LatestOrder");
   const { data } = useQuery(["allFeed"], feed.getFeedLatestAll);
 
@@ -39,17 +40,29 @@ const GatherPage = () => {
         </Select>
       </div>
       <CardWrapper>
-        {data?.data.feed_list.map((res: AllFeed) => {
-          const { created_at, feed_id, title, views, writer } = res;
-          return <GatherCard created_at={created_at} feed_id={feed_id} title={title} views={views} writer={writer} />;
+        {data?.data.feed_list.slice(page * 4, page * 4 + 4).map((res: AllFeed) => {
+          const { created_at, feed_id, title, views, writer, major, end_at } = res;
+          return (
+            <Link key={feed_id} to={`/gather/${feed_id}`} state={{ data: feed_id }}>
+              <GatherCard
+                major={major}
+                created_at={created_at}
+                feed_id={feed_id}
+                title={title}
+                views={views}
+                writer={writer}
+                end_at={end_at}
+              />
+            </Link>
+          );
         })}
       </CardWrapper>
       <div style={{ display: "flex", justifyContent: "end", width: 1000 }}>
-        <Link to="/gather/create">
+        <Link to="/gather/create" state={{ type: null }}>
           <WriteButton>글 작성하기</WriteButton>
         </Link>
       </div>
-      <PageNation />
+      <PageNation page={page} setPage={setPage} data={data?.data.feed_list} maxNumber={4} />
       <div style={{ marginBottom: 200 }}></div>
     </Container>
   );

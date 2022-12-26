@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo";
 import DefaultImage from "../Assets/img/defaultImg.svg";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useInput from "../Hooks/useInput";
+import { useSetRecoilState } from "recoil";
+import { SearchAtom } from "../Store/atoms";
 
-type CurrentHeader = "HOME" | "STUDENT" | "CLUB" | "GATHER" | "MYPAGE" | "NOTICE";
+type CurrentHeader = "HOME" | "STUDENT" | "CLUB" | "GATHER" | "MYPAGE" | "NOTICE" | "SEARCH";
 
 const Header = () => {
   const router = useLocation();
   const [current, setCurrent] = useState<CurrentHeader>("HOME");
+  const navigate = useNavigate();
+  const [search, onChangeSearch, setSearch] = useInput();
+  const setSearchAtom = useSetRecoilState(SearchAtom);
 
   useEffect(() => {
     switch (router.pathname) {
@@ -33,10 +39,34 @@ const Header = () => {
       case "/my":
         setCurrent("MYPAGE");
         break;
+      case "/search":
+        setCurrent("SEARCH");
+        break;
       default:
+        const [, urlName] = router.pathname.split("/");
+        switch (urlName) {
+          case "student":
+            setCurrent("STUDENT");
+            break;
+          case "club":
+            setCurrent("CLUB");
+            break;
+          case "gather":
+            setCurrent("GATHER");
+            break;
+        }
         break;
     }
   }, [router]);
+
+  const moveToSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setSearch("");
+      setSearchAtom(search);
+      navigate("/search");
+    }
+  };
 
   return (
     <Container>
@@ -71,10 +101,18 @@ const Header = () => {
         <Pos>
           <Search></Search>
         </Pos>
-        <SearchInput type="text" placeholder="검색"></SearchInput>
+        <SearchInput
+          onChange={onChangeSearch}
+          value={search}
+          onKeyPress={moveToSearch}
+          type="text"
+          placeholder="검색"
+        ></SearchInput>
         {localStorage.getItem("access_token") ? (
           <>
-            <Bell />
+            <Link to="/notice">
+              <Bell color={current === "NOTICE" ? "#FD3078" : "white"} />
+            </Link>
             <Link to="/my">
               <Click>
                 <img
