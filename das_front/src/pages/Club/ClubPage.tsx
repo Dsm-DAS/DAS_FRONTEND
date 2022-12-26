@@ -1,9 +1,18 @@
 import styled from "styled-components";
 import ClubCard from "../../components/PageCard/PageCard";
 import BackDeoco from "../../Assets/img/BackDeco.svg";
+import club from "../../Utils/api/Sign/Club";
+import { useQuery } from "@tanstack/react-query";
+import { AllClub, IClubMember } from "../../interfaces/Club";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { IClubType } from "../../interfaces/Enums";
+import { TypeChanger } from "../../Utils/Function/ClubTypeChanger";
 
 const ClubPage = () => {
+  const [currentType, setCurrentType] = useState("전공동아리");
   const club_type = ["전공동아리", "창체동아리", "자율동아리"];
+  const { data } = useQuery(["user"], club.getClubAll);
 
   return (
     <Container>
@@ -19,7 +28,11 @@ const ClubPage = () => {
         </Display>
         <ClubWrapper>
           {club_type.map((res, i) => {
-            return <ClubType key={i}>{res}</ClubType>;
+            return (
+              <ClubType onClick={() => setCurrentType(res)} current={res === currentType} key={i}>
+                {res}
+              </ClubType>
+            );
           })}
         </ClubWrapper>
       </Wrapper>
@@ -28,14 +41,25 @@ const ClubPage = () => {
         <option>조회수순</option>
       </Select>
       <CardWrapper>
-        {/* <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
-        <ClubCard></ClubCard>
-        <ClubCard></ClubCard> */}
+        {data?.data?.club_list
+          ?.filter((res: AllClub) => res.club_type === TypeChanger(currentType))
+          .map((res: AllClub) => {
+            const { club_id, club_name, club_image_url, club_introduce, club_type, club_category, like_counts } = res;
+            return (
+              <Link key={club_id} to={`/club/${club_id}`} state={{ data: club_id }}>
+                <ClubCard
+                  key={club_id}
+                  class_num={0}
+                  grade={0}
+                  name={club_name}
+                  profile_image_url={club_image_url}
+                  user_id={club_id}
+                  view_counts={like_counts}
+                  introduce={club_introduce}
+                ></ClubCard>
+              </Link>
+            );
+          })}
       </CardWrapper>
     </Container>
   );
@@ -86,10 +110,11 @@ const ClubWrapper = styled.div`
   gap: 150px;
 `;
 
-const ClubType = styled.div`
+const ClubType = styled.div<{ current: boolean }>`
   font-size: 30px;
-  color: ${(props) => props.theme.White};
+  color: ${(props) => (props.current ? props.theme.Main : props.theme.White)};
   font-weight: 500;
+  text-decoration: ${(props) => (props.current ? "underline" : "none")};
   &:hover {
     color: ${(props) => props.theme.Main};
     text-decoration: underline;

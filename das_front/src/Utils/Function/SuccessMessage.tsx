@@ -1,8 +1,8 @@
-import { toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function ToastSuccess (text: string | null) {
-    toast.success(`${text}`, {
+export default function ToastSuccess(text: string | null) {
+  toast.success(`${text}`, {
     position: "top-right",
     autoClose: 2000,
     hideProgressBar: false,
@@ -10,5 +10,5 @@ export default function ToastSuccess (text: string | null) {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    });
+  });
 }

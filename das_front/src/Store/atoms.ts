@@ -1,16 +1,21 @@
 import { atom } from "recoil";
 
 export const EmailCheckAtom = atom({
-    key: "EmailCheckKey",
-    default: true,
+  key: "EmailCheckKey",
+  default: true,
 });
 
 export const EmailAtom = atom({
-    key: "EmailKey",
-    default: "",
+  key: "EmailKey",
+  default: "",
 });
 
 export const PasswordAtom = atom({
-    key: "PasswordKey",
-    default: "",
+  key: "PasswordKey",
+  default: "",
+});
+
+export const SearchAtom = atom({
+  key: "SearchContent",
+  default: "",
 });

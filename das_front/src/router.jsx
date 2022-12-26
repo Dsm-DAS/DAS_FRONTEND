@@ -13,6 +13,9 @@ import GatherPage from "./pages/Gather/GatherPage";
 import ClubDetail from "./pages/Club/ClubDetailPage";
 import GatherDetail from "./pages/Gather/GahterDetail";
 import GatherCreate from "./pages/Gather/GatherCreate";
+import SearchPage from "./pages/SearchPage";
+import NoticePage from "./pages/NoticePage/NoticePage";
+import NoticePageDetail from "./pages/NoticePage/NoticePageDetail";
 
 function Router() {
   return (
@@ -31,7 +34,9 @@ function Router() {
         <Route path="/club/:id" element={<ClubDetail />} />
         <Route path="/gather/:id" element={<GatherDetail />} />
         <Route path="/gather/create" element={<GatherCreate />} />
-        <Route path="/notice" element={<></>} />
+        <Route path="/search" element={<SearchPage></SearchPage>} />
+        <Route path="/notice" element={<NoticePage></NoticePage>} />
+        <Route path="/notice/:id" element={<NoticePageDetail></NoticePageDetail>} />
       </Routes>
       <Footer />
     </BrowserRouter>

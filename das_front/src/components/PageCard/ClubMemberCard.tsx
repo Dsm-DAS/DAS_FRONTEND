@@ -1,11 +1,17 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { IClubMember } from "../../interfaces/Club";
 
-const ClubMember = () => {
+const ClubMember = ({ name, user_id, profile_image_url }: IClubMember) => {
   return (
-    <Container>
-      <Img />
-      <Name>정지관</Name>
-    </Container>
+    <Link to={`/student/${user_id}`}>
+      <Container>
+        <Img>
+          <img src={profile_image_url} alt=""></img>
+        </Img>
+        <Name>{name}</Name>
+      </Container>
+    </Link>
   );
 };
 

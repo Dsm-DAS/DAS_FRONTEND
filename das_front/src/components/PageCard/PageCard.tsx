@@ -1,23 +1,26 @@
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { Heart } from "../../Assets/img/Logo";
+import { StudentCardEye, Heart } from "../../Assets/img/Logo";
 import { AllUser } from "../../interfaces/User";
 
-const PageCard = ({ name, profile_image_url, user_id, view_counts }: AllUser) => {
+const PageCard = ({ name, profile_image_url, user_id, view_counts, introduce }: AllUser) => {
+  const location = useLocation();
   return (
-    <Link to={`/user/${user_id}`}>
-      <Container>
-        <Back>
-          <img src={profile_image_url} width={277} height={277} alt="프로필 이미지" />
-        </Back>
-        <ClubName>{name}</ClubName>
-        <Explain>간단한 동아리 소개</Explain>
-        <Wrapper>
+    <Container>
+      <Back>
+        <img src={profile_image_url} width={277} height={277} alt="프로필 이미지" />
+      </Back>
+      <ClubName>{name}</ClubName>
+      <Explain>{introduce || "동아리 소개"}</Explain>
+      <Wrapper>
+        {location.pathname === "/club" ? (
           <Heart color={"#979797"} />
-          <Number>{view_counts}</Number>
-        </Wrapper>
-      </Container>
-    </Link>
+        ) : (
+          <StudentCardEye color={"#979797"}></StudentCardEye>
+        )}
+        <Number>{view_counts || 0}</Number>
+      </Wrapper>
+    </Container>
   );
 };
 

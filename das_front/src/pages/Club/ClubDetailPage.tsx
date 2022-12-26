@@ -1,42 +1,50 @@
+import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import BackDeoco from "../../Assets/img/BackDeco.svg";
 import Eye from "../../Assets/img/Eyes.svg";
 import ClubMember from "../../components/PageCard/ClubMemberCard";
+import { IClubMember } from "../../interfaces/Club";
+import club from "../../Utils/api/Sign/Club";
+import { ClubTypeFunc } from "../../Utils/Function/ClubType";
 
 const ClubDetail = () => {
+  const location = useLocation();
+  let club_id = location.state.data;
+  const { data } = useQuery(["club", club_id], () => club.getClubDetail(club_id));
+
   return (
     <Container>
       <Back>
         <img style={{ position: "absolute", right: "0" }} src={BackDeoco} alt="배경 이미지" />
       </Back>
-      <ClubIcon></ClubIcon>
+      <ClubIcon>
+        <img width={200} height={200} src={data?.data.club_image_url} alt=""></img>
+      </ClubIcon>
       <div style={{ display: "flex", alignItems: "end", position: "absolute", top: "63vh", left: "13%" }}>
-        <ClubName>DSM-정</ClubName>
-        <ClubType>전공동아리</ClubType>
+        <ClubName>{data?.data.club_name}</ClubName>
+        <ClubType>{ClubTypeFunc(data?.data.club_type)}</ClubType>
       </div>
       <Wrapper>
         <Categories>
-          <Category>#웹프론트</Category>
-          <Category>#전공동아리</Category>
-          <Category>#웹프론트</Category>
+          <Category>#{data?.data.club_category}</Category>
+          <Category>#{ClubTypeFunc(data?.data.club_type)}</Category>
         </Categories>
         <Views>
           <img src={Eye} alt="" />
-          <View>38</View>
+          <View>{data?.data.club_views}</View>
         </Views>
         <div style={{ marginTop: 100 }}>
           <Title>소개</Title>
-          <Introduce>간단한 동아리 소개</Introduce>
+          <Introduce>{data?.data.club_introduce || "동아리 소개"}</Introduce>
         </div>
         <div style={{ marginTop: 30, marginBottom: 100 }}>
           <Title>부원</Title>
           <Members>
-            <ClubMember></ClubMember>
-            <ClubMember></ClubMember>
-            <ClubMember></ClubMember>
-            <ClubMember></ClubMember>
-            <ClubMember></ClubMember>
-            <ClubMember></ClubMember>
+            {data?.data?.user_list?.map((res: IClubMember) => {
+              const { name, user_id, profile_image_url } = res;
+              return <ClubMember name={name} user_id={user_id} profile_image_url={profile_image_url}></ClubMember>;
+            })}
           </Members>
         </div>
       </Wrapper>
@@ -68,7 +76,7 @@ const ClubIcon = styled.div`
   top: 33vh;
   width: 200px;
   height: 200px;
-  background-color: red;
+  overflow: hidden;
 `;
 
 const ClubName = styled.div`

@@ -1,11 +1,23 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Arrow from "../../Assets/img/Arrow.svg";
+import useInput from "../../Hooks/useInput";
+import comment from "../../Utils/api/Sign/Comment";
+import ToastSuccess from "../../Utils/Function/SuccessMessage";
 
-const CommentInput = () => {
+const CommentInput = ({ feed_id }: { feed_id: number }) => {
+  const [content, onChangeContent, setContent] = useInput();
+
+  const navigate = useNavigate();
+
+  const WriteComment = () => {
+    comment.postComment(feed_id, content, navigate);
+  };
+
   return (
     <Container>
-      <Input placeholder="댓글추가" />
-      <Button src={Arrow} alt="" />
+      <Input maxLength={500} onChange={onChangeContent} value={content} placeholder="댓글추가(최대 500자)" />
+      <Button onClick={WriteComment} src={Arrow} alt="" />
     </Container>
   );
 };

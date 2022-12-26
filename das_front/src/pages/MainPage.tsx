@@ -6,10 +6,11 @@ import UserCard from "../components/MainPageCard/UserCard";
 import Slider from "../components/Slider";
 import { AllUser } from "../interfaces/User";
 import user from "../Utils/api/Sign/User";
+import club from "../Utils/api/Sign/Club";
 
 const MainPage = () => {
   const { data: userData } = useQuery(["user"], user.getAllUser);
-  // const { data: clubData } = useQuery(["user"], user.getAllUser);
+  const { data: clubData } = useQuery(["club"], club.getClubAll);
 
   return (
     <>
@@ -21,7 +22,20 @@ const MainPage = () => {
         </Link>
       </Content>
       <Cards>
-        <ClubCard></ClubCard>
+        {clubData?.data.club_list.map((res: any) => {
+          const { club_id, club_name, club_image_url, club_introduce, club_type, club_category, like_counts } = res;
+          return (
+            <ClubCard
+              club_id={club_id}
+              club_name={club_name}
+              club_image_url={club_image_url}
+              club_introduce={club_introduce}
+              club_type={club_type}
+              club_category={club_category}
+              like_counts={like_counts}
+            />
+          );
+        })}
       </Cards>
       <Content>
         <Title>학생</Title>
@@ -30,10 +44,10 @@ const MainPage = () => {
         </Link>
       </Content>
       <Cards>
-        {userData?.data.user_list.map((res: AllUser) => {
-          const { class_num, grade, name, profile_image_url, user_id, view_counts } = res;
+        {userData?.data.user_list?.map((res: AllUser) => {
+          const { class_num, grade, name, profile_image_url, user_id, view_counts, introduce } = res;
           return (
-            <Link to={`/student/${user_id}`}>
+            <Link key={user_id} to={`/student/${user_id}`}>
               <UserCard
                 class_num={class_num}
                 grade={grade}
@@ -41,7 +55,8 @@ const MainPage = () => {
                 profile_image_url={profile_image_url}
                 user_id={user_id}
                 view_counts={view_counts}
-              ></UserCard>
+                introduce={introduce}
+              />
             </Link>
           );
         })}
@@ -77,4 +92,6 @@ const Cards = styled.div`
   margin-left: 15%;
   margin-top: 10px;
   margin-bottom: 100px;
+  width: 73vw;
+  overflow: hidden;
 `;

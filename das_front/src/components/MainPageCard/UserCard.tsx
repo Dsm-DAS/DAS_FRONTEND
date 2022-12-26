@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heart } from "../../Assets/img/Logo";
+import { Eyes } from "../../Assets/img/Logo";
 import { AllUser } from "../../interfaces/User";
 
 const UserCard = ({ name, profile_image_url, user_id, view_counts }: AllUser) => {
@@ -11,7 +11,7 @@ const UserCard = ({ name, profile_image_url, user_id, view_counts }: AllUser) =>
       <Wrapper>
         <Name>{name}</Name>
         <HeartPos>
-          <Heart color={"#979797"}></Heart>
+          <Eyes color={"#979797"}></Eyes>
           <Count>{view_counts}</Count>
         </HeartPos>
       </Wrapper>
