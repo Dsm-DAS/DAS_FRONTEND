@@ -1,7 +1,7 @@
 import { Heart } from "../../Assets/img/Logo";
 import styled from "styled-components";
 import { AllClub } from "../../interfaces/Club";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const ClubCard = ({
   club_id,
   club_name,
@@ -11,8 +11,10 @@ const ClubCard = ({
   club_category,
   like_counts,
 }: AllClub) => {
+  const navigate = useNavigate();
+
   return (
-    <Container>
+    <Container onClick={() => navigate(`/club/${club_id}`, { state: { data: club_id } })}>
       <Circle>
         <img width={60} height={60} src={club_image_url} />
       </Circle>
