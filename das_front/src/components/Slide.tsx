@@ -1,6 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
+import Modeep from "../Assets/img/모딥.png";
+import Dms from "../Assets/img/DMS.png";
 
 const Slide = () => {
   const settings = {
@@ -21,36 +23,22 @@ const Slide = () => {
     <div>
       <Slider {...settings}>
         <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
+          <Card>
+            <Img src={Modeep} />
+          </Card>
+          <Title>모딥</Title>
         </div>
         <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
+          <Card>
+            <Img src={Dms} />
+          </Card>
+          <Title>DMS</Title>
         </div>
         <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
-        </div>
-        <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
-        </div>
-        <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
-        </div>
-        <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
-        </div>
-        <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
-        </div>
-        <div>
-          <Card></Card>
-          <Title>동아리 이름</Title>
+          <Card>
+            <Img src="https://test-imag-upload-bucket.s3.ap-northeast-2.amazonaws.com/Vector.png" />
+          </Card>
+          <Title>정</Title>
         </div>
       </Slider>
     </div>
@@ -60,6 +48,10 @@ const Slide = () => {
 export default Slide;
 
 const Card = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   width: 800px;
   height: 300px;
   background-color: white;
@@ -76,4 +68,9 @@ const Title = styled.div`
   font-weight: 500;
   color: white;
   margin-top: 15px;
+`;
+
+const Img = styled.img`
+  width: 200px;
+  height: 200px;
 `;

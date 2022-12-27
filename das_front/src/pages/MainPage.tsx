@@ -5,7 +5,7 @@ import ClubCard from "../components/MainPageCard/ClubCard";
 import UserCard from "../components/MainPageCard/UserCard";
 import Slider from "../components/Slider";
 import { AllUser } from "../interfaces/User";
-import user from "../Utils/api/Sign/User";
+import user from "../Utils/api/User/User";
 import club from "../Utils/api/Club/Club";
 
 const MainPage = () => {
@@ -47,7 +47,7 @@ const MainPage = () => {
         {userData?.data.user_list?.map((res: AllUser) => {
           const { class_num, grade, name, profile_image_url, user_id, view_counts, introduce } = res;
           return (
-            <Link key={user_id} to={`/student/${user_id}`}>
+            <Link key={user_id} to={`/student/${user_id}`} state={{ data: user_id }}>
               <UserCard
                 class_num={class_num}
                 grade={grade}
@@ -93,5 +93,5 @@ const Cards = styled.div`
   margin-top: 10px;
   margin-bottom: 100px;
   width: 73vw;
-  overflow: hidden;
+  overflow: scroll;
 `;

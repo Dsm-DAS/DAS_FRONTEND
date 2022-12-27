@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ViewIcon from "../../Assets/img/ViewIcon.svg";
 import { Public } from "../../interfaces/My";
 
-const PublicInfoCompo = ({ titleName, major, profile_image_url, view_counts }: Public) => {
+const PublicInfoCompo = ({ titleName, major, profile_image_url, view_counts, isMine }: Public) => {
   return (
     <Container>
       <MyImg>
@@ -17,9 +17,7 @@ const PublicInfoCompo = ({ titleName, major, profile_image_url, view_counts }: P
           <NormalText>{view_counts}</NormalText>
           <STitleText>viewed</STitleText>
         </ViewWrapper>
-        <Link to="/ChangeSet">
-          <SetBtn>프로필 설정</SetBtn>
-        </Link>
+        <Link to="/ChangeSet">{isMine && <SetBtn>프로필 설정</SetBtn>}</Link>
       </PublicInfo>
     </Container>
   );

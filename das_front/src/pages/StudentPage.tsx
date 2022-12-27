@@ -4,7 +4,7 @@ import styled from "styled-components";
 import BackDeco from "../Assets/img/BackDeco.svg";
 import PageCard from "../components/PageCard/PageCard";
 import { AllUser } from "../interfaces/User";
-import user from "../Utils/api/Sign/User";
+import user from "../Utils/api/User/User";
 
 const Student = () => {
   const { data } = useQuery(["allUser"], user.getAllUser);
@@ -26,7 +26,7 @@ const Student = () => {
         {data?.data.user_list.map((res: AllUser) => {
           const { class_num, grade, name, profile_image_url, user_id, view_counts, introduce } = res;
           return (
-            <Link to={`/user/${user_id}`}>
+            <Link to={`/student/${user_id}`} state={{ data: user_id }}>
               <PageCard
                 key={user_id}
                 class_num={class_num}

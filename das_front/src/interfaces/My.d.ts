@@ -3,6 +3,7 @@ export interface Public {
   profile_image_url: string;
   major: string;
   view_counts: number;
+  isMine: boolean;
 }
 
 export interface Private {

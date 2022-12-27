@@ -1,15 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import BackDeco from "../../Assets/img/BackDeco.svg";
-import PrivateInfoCompo from "../../components/My/PrivateInfoCompo";
-import PublicInfoCompo from "../../components/My/PublicInfoCompo";
-import MyStack from "../../components/My/MyStack";
-import user from "../../Utils/api/My/My";
-import MyClub from "../../components/My/MyClub";
-import MyGragh from "../../components/My/MyGragh";
+import MyClub from "../components/My/MyClub";
+import MyGragh from "../components/My/MyGragh";
+import MyStack from "../components/My/MyStack";
+import PublicInfoCompo from "../components/My/PublicInfoCompo";
+import PrivateInfoCompo from "../components/My/PrivateInfoCompo";
+import user from "../Utils/api/User/User";
+import BackDeco from "../Assets/img/BackDeco.svg";
 
-const MyPage = () => {
-  const { data, isLoading } = useQuery(["myInfo"], user.getMyInfo);
+const StudentDetailPage = () => {
+  const location = useLocation();
+  const { data, isLoading } = useQuery(["user"], () => user.getUserDetail(location.state.data));
 
   if (isLoading) {
     return <h2>Loading</h2>;
@@ -20,7 +23,7 @@ const MyPage = () => {
       <Wrapper>
         <img style={{ position: "absolute", right: "0" }} src={BackDeco} alt="배경이미지" />
         <Display>
-          <BTitle>마이페이지</BTitle>
+          <BTitle>학생</BTitle>
           <BTitle></BTitle>
         </Display>
       </Wrapper>
@@ -29,7 +32,7 @@ const MyPage = () => {
         major={data?.data.major}
         profile_image_url={data?.data.profile_image_url}
         view_counts={data?.data.view_counts}
-        isMine={true}
+        isMine={false}
       />
       <PrivateInfoCompo
         titleName={data?.data.name}
@@ -53,7 +56,7 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default StudentDetailPage;
 
 const Container = styled.div`
   padding-top: 60px;

@@ -13,7 +13,9 @@ const ClubCard = ({
 }: AllClub) => {
   return (
     <Container>
-      <Circle></Circle>
+      <Circle>
+        <img width={60} height={60} src={club_image_url} />
+      </Circle>
       <Name>{club_name}</Name>
       <HeartPos>
         <Count>{like_counts}</Count>
@@ -43,12 +45,16 @@ const Container = styled.div`
 
 const Circle = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
   height: 60px;
   background-color: white;
   border-radius: 50%;
   margin-left: 12px;
   margin-top: 12px;
+  overflow: hidden;
 `;
 
 const Name = styled.div`

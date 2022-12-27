@@ -17,6 +17,7 @@ import SearchPage from "./pages/SearchPage";
 import NoticePage from "./pages/NoticePage/NoticePage";
 import NoticePageDetail from "./pages/NoticePage/NoticePageDetail";
 import ChangeSetPage from "./pages/My/ChangeSetPage";
+import StudentDetailPage from "./pages/StudentDetailPage";
 
 function Router() {
   return (
@@ -32,6 +33,7 @@ function Router() {
         <Route path="/ChangeSet" element={<ChangeSetPage />} />
         <Route path="/club" element={<ClubPage />} />
         <Route path="/student" element={<Student />} />
+        <Route path="/student/:id" element={<StudentDetailPage />} />
         <Route path="/gather" element={<GatherPage />} />
         <Route path="/club/:id" element={<ClubDetail />} />
         <Route path="/gather/:id" element={<GatherDetail />} />

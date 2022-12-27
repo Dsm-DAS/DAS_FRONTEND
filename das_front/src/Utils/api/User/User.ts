@@ -11,4 +11,14 @@ export default {
       },
     });
   },
+  getUserDetail(id: number) {
+    //유저 상세보기
+    return request({
+      url: `/user/${id}`,
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
+  },
 };

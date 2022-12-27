@@ -12,6 +12,9 @@ import { IClubType } from "../interfaces/Enums";
 import feed from "../Utils/api/Club/Feed";
 import GatherCard from "../components/PageCard/GatherCard";
 import { AllFeed } from "../interfaces/Feed";
+import student from "../Utils/api/User/User";
+import { AllUser } from "../interfaces/User";
+import PageCard from "../components/PageCard/PageCard";
 
 interface IFilter {
   grade: number;
@@ -39,10 +42,11 @@ const SearchPage = () => {
     setFilter({ ...filter, [name]: value });
   };
 
-  const { data: clubList } = useQuery(["user"], club.getClubAll);
+  const { data: studentList } = useQuery(["user"], student.getAllUser);
+  const { data: clubList } = useQuery(["club"], club.getClubAll);
   const { data: gatherList } = useQuery(["gather"], feed.getFeedLatestAll);
 
-  console.log(gatherList);
+  console.log(studentList);
 
   return (
     <Container>
@@ -50,7 +54,7 @@ const SearchPage = () => {
         <Input onChange={onChangeSearch} value={search} placeholder="검색어를 입력하세요." />
       </Wrapper>
       <div style={{ display: "flex", gap: "10px", width: "73vw", marginTop: 40 }}>
-        <Select name="grade" onChange={onChangeFilter}>
+        {/* <Select name="grade" onChange={onChangeFilter}>
           <option>전체</option>
           <option>1학년</option>
           <option>2학년</option>
@@ -74,15 +78,39 @@ const SearchPage = () => {
           <option>동아리</option>
           <option>봉사활동</option>
           <option>기타</option>
-        </Select>
+        </Select> */}
       </div>
-      <Cards>
+      <Box>
         <Title>학생</Title>
-      </Cards>
+        <Cards>
+          {studentList?.data.user_list
+            ?.filter((res: AllUser) => res.name?.includes(search))
+            .map((res: AllUser) => {
+              const { class_num, grade, name, profile_image_url, user_id, view_counts, introduce } = res;
+              return (
+                <>
+                  <Link to={`/student/${user_id}`} state={{ data: user_id }}>
+                    <PageCard
+                      key={user_id}
+                      class_num={class_num}
+                      grade={grade}
+                      name={name}
+                      profile_image_url={profile_image_url}
+                      user_id={user_id}
+                      introduce={introduce}
+                      view_counts={view_counts}
+                    />
+                  </Link>
+                </>
+              );
+            })}
+        </Cards>
+      </Box>
       <Title>동아리</Title>
       <Box>
         <Cards>
           {clubList?.data?.club_list
+
             ?.filter((res: AllClub) => res.club_name.includes(search))
             ?.slice(0, 8)
             .map((res: AllClub) => {
@@ -98,7 +126,7 @@ const SearchPage = () => {
                     user_id={club_id}
                     view_counts={like_counts}
                     introduce={club_introduce}
-                  ></ClubCard>
+                  />
                 </Link>
               );
             })}
@@ -189,6 +217,8 @@ const Box = styled.div`
 
 const Cards = styled.div`
   display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   padding: 10px;
   gap: 30px;
 `;

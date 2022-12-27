@@ -6,7 +6,7 @@ const MyClub = () => {
     <Container>
       <TitleWrapper>
         <TitleText>Club</TitleText>
-        <SideText>자세히보기 ⨠</SideText>
+        {/* <SideText>자세히보기 ⨠</SideText> */}
       </TitleWrapper>
       <Wrapper>
         <img src={DefaultImg} />
