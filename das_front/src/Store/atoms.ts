@@ -19,3 +19,18 @@ export const SearchAtom = atom({
   key: "SearchContent",
   default: "",
 });
+
+export const SetAtom = atom({
+  key: "SetKey",
+  default: false,
+});
+
+export const SetPwAtom = atom({
+  key: "SetPwKey",
+  default: false,
+});
+
+export const fileImageAtom = atom({
+  key: "fileImageKey",
+  default: "",
+});

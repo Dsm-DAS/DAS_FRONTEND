@@ -6,7 +6,7 @@ import UserCard from "../components/MainPageCard/UserCard";
 import Slider from "../components/Slider";
 import { AllUser } from "../interfaces/User";
 import user from "../Utils/api/Sign/User";
-import club from "../Utils/api/Sign/Club";
+import club from "../Utils/api/Club/Club";
 
 const MainPage = () => {
   const { data: userData } = useQuery(["user"], user.getAllUser);
@@ -22,7 +22,7 @@ const MainPage = () => {
         </Link>
       </Content>
       <Cards>
-        {clubData?.data.club_list.map((res: any) => {
+        {clubData?.data?.club_list.map((res: any) => {
           const { club_id, club_name, club_image_url, club_introduce, club_type, club_category, like_counts } = res;
           return (
             <ClubCard

@@ -5,7 +5,7 @@ import BackDeoco from "../../Assets/img/BackDeco.svg";
 import Eye from "../../Assets/img/Eyes.svg";
 import ClubMember from "../../components/PageCard/ClubMemberCard";
 import { IClubMember } from "../../interfaces/Club";
-import club from "../../Utils/api/Sign/Club";
+import club from "../../Utils/api/Club/Club";
 import { ClubTypeFunc } from "../../Utils/Function/ClubType";
 
 const ClubDetail = () => {

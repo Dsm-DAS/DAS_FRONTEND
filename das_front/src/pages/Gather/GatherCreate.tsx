@@ -4,7 +4,7 @@ import styled from "styled-components";
 import BackDeoco from "../../Assets/img/BackDeco.svg";
 import useInput from "../../Hooks/useInput";
 import { IMajor } from "../../interfaces/Enums";
-import Feed from "../../Utils/api/Sign/Feed";
+import Feed from "../../Utils/api/Club/Feed";
 
 interface IGahterCreate {
   Y: number;
@@ -29,7 +29,7 @@ const GatherCreate = () => {
 
   useEffect(() => {
     if (location.state.type === "edit") {
-      Feed.getFeedDetail(location.state.data).then((res) => {
+      Feed.getFeedDetail(location.state.data).then((res: any) => {
         const { content, title, das_url } = res.data;
         setUrl(das_url);
         setContent(content);

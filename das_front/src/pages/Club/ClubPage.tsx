@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ClubCard from "../../components/PageCard/PageCard";
 import BackDeoco from "../../Assets/img/BackDeco.svg";
-import club from "../../Utils/api/Sign/Club";
+import club from "../../Utils/api/Club/Club";
 import { useQuery } from "@tanstack/react-query";
 import { AllClub, IClubMember } from "../../interfaces/Club";
 import { Link } from "react-router-dom";

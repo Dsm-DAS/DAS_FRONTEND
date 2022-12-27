@@ -6,10 +6,10 @@ import styled from "styled-components";
 import useInput from "../Hooks/useInput";
 import { AllClub } from "../interfaces/Club";
 import { SearchAtom } from "../Store/atoms";
-import club from "../Utils/api/Sign/Club";
+import club from "../Utils/api/Club/Club";
 import ClubCard from "../components/PageCard/PageCard";
 import { IClubType } from "../interfaces/Enums";
-import feed from "../Utils/api/Sign/Feed";
+import feed from "../Utils/api/Club/Feed";
 import GatherCard from "../components/PageCard/GatherCard";
 import { AllFeed } from "../interfaces/Feed";
 

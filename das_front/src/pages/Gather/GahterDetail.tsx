@@ -6,7 +6,7 @@ import MessageText from "../../Assets/img/messageText.svg";
 import CommentInput from "../../components/Comment/CommentInput";
 import Comments from "../../components/Comment/Comments";
 import { useQuery } from "@tanstack/react-query";
-import feed from "../../Utils/api/Sign/Feed";
+import feed from "../../Utils/api/Club/Feed";
 import { Link, useLocation } from "react-router-dom";
 import useAutosizeTextArea from "../../Utils/Function/TextAreaAutoHeight";
 import { useRef } from "react";

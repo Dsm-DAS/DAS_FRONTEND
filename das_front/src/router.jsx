@@ -5,7 +5,7 @@ import MainPage from "./pages/MainPage";
 import SignUpEmail from "./pages/SignPage/SignUp/SignUpEmail";
 import LoginPage from "./pages/SignPage/SignIn/LoginPage";
 import SetPwPage from "./pages/SignPage/SignUp/SetPw";
-import MyPage from "./pages/MyPage";
+import MyPage from "./pages/My/MyPage";
 import ClubPage from "./pages/Club/ClubPage";
 import Student from "./pages/StudentPage";
 import SetPrivacy from "./pages/SignPage/SignUp/SetPrivacy";
@@ -16,6 +16,7 @@ import GatherCreate from "./pages/Gather/GatherCreate";
 import SearchPage from "./pages/SearchPage";
 import NoticePage from "./pages/NoticePage/NoticePage";
 import NoticePageDetail from "./pages/NoticePage/NoticePageDetail";
+import ChangeSetPage from "./pages/My/ChangeSetPage";
 
 function Router() {
   return (
@@ -28,6 +29,7 @@ function Router() {
         <Route path="/setPw" element={<SetPwPage />} />
         <Route path="/setPrivacy" element={<SetPrivacy />} />
         <Route path="/my" element={<MyPage />} />
+        <Route path="/ChangeSet" element={<ChangeSetPage />} />
         <Route path="/club" element={<ClubPage />} />
         <Route path="/student" element={<Student />} />
         <Route path="/gather" element={<GatherPage />} />

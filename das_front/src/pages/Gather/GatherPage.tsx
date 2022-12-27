@@ -6,7 +6,7 @@ import BackDeco from "../../Assets/img/BackDeco.svg";
 import GatherCard from "../../components/PageCard/GatherCard";
 import PageNation from "../../components/PageNation/PageNation";
 import { AllFeed } from "../../interfaces/Feed";
-import feed from "../../Utils/api/Sign/Feed";
+import feed from "../../Utils/api/Club/Feed";
 
 type FeedFilter = "ViewOrder" | "LatestOrder";
 
